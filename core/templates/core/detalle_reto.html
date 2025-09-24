@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h1>{{ reto.titulo }}</h1>
+        <small class="text-muted">Dificultad: {{ reto.dificultad }} | Puntuación: {{ reto.puntuacion }}</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ reto.enunciado|linebreaks }}</p>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.respuesta.label_tag }}
+                {{ form.respuesta }}
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Respuesta</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
