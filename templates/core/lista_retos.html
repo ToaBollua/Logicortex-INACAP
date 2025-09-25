@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Retos Disponibles{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Retos Lógicos y Matemáticos</h1>
+
+{% if retos %}
+    <div class="list-group">
+        {% for reto in retos %}
+            <a href="{% url 'core:detalle_reto' reto.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ reto.titulo }}</h5>
+                    <small>{{ reto.fecha_publicacion|date:"d/m/Y" }}</small>
+                </div>
+                <p class="mb-1">Dificultad: {{ reto.dificultad }}</p>
+                <small>Puntuación: {{ reto.puntuacion }} puntos.</small>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info" role="alert">
+        No hay retos disponibles en este momento. ¡Vuelve pronto!
+    </div>
+{% endif %}
+{% endblock %}

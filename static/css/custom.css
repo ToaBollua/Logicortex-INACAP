@@ -1,0 +1,78 @@
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.navbar {
+    background-color: #000 !important;
+    border-bottom: 1px solid #00ff00;
+}
+
+.navbar-brand, .nav-link, .navbar-text {
+    color: #00ff00 !important;
+    text-shadow: 0 0 2px #00ff00;
+}
+
+.nav-link:hover {
+    color: #99ff99 !important;
+}
+
+a {
+    color: #00ff00;
+}
+
+a:hover {
+    color: #99ff99;
+}
+
+.btn-primary {
+    background-color: #00ff00;
+    border-color: #00ff00;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: #00cc00;
+    border-color: #00cc00;
+}
+
+.list-group-item {
+    background-color: #2b2b2b;
+    border: 1px solid #005c00;
+    color: #e0e0e0;
+}
+
+.list-group-item-action:hover, .list-group-item-action:focus {
+    background-color: #3c3c3c;
+    color: #00ff00;
+}
+
+.card {
+    background-color: #2b2b2b;
+    border: 1px solid #005c00;
+}
+
+.form-control {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border: 1px solid #00ff00;
+}
+
+.form-control:focus {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border-color: #99ff99;
+    box-shadow: 0 0 0 0.25rem rgba(0, 255, 0, 0.25);
+}
+
+.alert-danger {
+    background-color: #4d0000;
+    color: #ff9999;
+    border-color: #ff0000;
+}
+
+.alert-info {
+    background-color: #00334d;
+    color: #99e6ff;
+    border-color: #00bfff;
+}

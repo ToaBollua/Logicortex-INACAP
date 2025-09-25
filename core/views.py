@@ -1,7 +1,44 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Reto, RespuestaUsuario, PerfilUsuario
-from .forms import RespuestaForm
+from .models import Reto, RespuestaUsuario
+from .forms import RespuestaForm, CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm
+
+def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('core:lista_retos')
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('core:lista_retos')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('core:lista_retos')
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            if user.is_staff:
+                return redirect('/admin/')
+            return redirect('core:lista_retos')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('core:lista_retos')
 
 def lista_retos(request):
     retos = Reto.objects.all().order_by('-fecha_publicacion')
@@ -14,9 +51,8 @@ def detalle_reto(request, reto_id):
         form = RespuestaForm(request.POST)
         if form.is_valid():
             respuesta_enviada = form.cleaned_data['respuesta']
-            es_correcta = respuesta_enviada.lower() == reto.respuesta_correcta.lower()
+            es_correcta = respuesta_enviada.strip().lower() == reto.respuesta_correcta.strip().lower()
             
-            # Guardar el intento del usuario
             RespuestaUsuario.objects.create(
                 usuario=request.user,
                 reto=reto,
@@ -24,13 +60,11 @@ def detalle_reto(request, reto_id):
                 es_correcta=es_correcta
             )
             
-            # Actualizar puntuación si es correcta
             if es_correcta:
-                perfil, created = PerfilUsuario.objects.get_or_create(usuario=request.user)
-                perfil.puntuacion += reto.puntuacion
-                perfil.save()
+                request.user.puntuacion += reto.puntuacion
+                request.user.save(update_fields=['puntuacion'])
 
-            return redirect('lista_retos') # Redirige a la lista de retos tras responder
+            return redirect('core:lista_retos')
     else:
         form = RespuestaForm()
 
