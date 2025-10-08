@@ -19,8 +19,8 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local.
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone https://github.com/ToaBollua/Logicortex-INACAP
-    cd Logicortex-INACAP
+    git clone https://github.com/ToaBollua/Logicortex-INACAP #URL del repositorio
+    cd Logicortex-INACAP #Nombre del directorio
     ```
 
 2.  **Crea y activa un entorno virtual:**
