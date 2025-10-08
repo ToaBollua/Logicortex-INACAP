@@ -19,13 +19,13 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local.
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone <URL_DEL_REPOSITORIO>
-    cd <NOMBRE_DEL_DIRECTORIO>
+    git clone https://github.com/ToaBollua/Logicortex-INACAP
+    cd Logicortex-INACAP
     ```
 
 2.  **Crea y activa un entorno virtual:**
     ```bash
-    python -m venv venv #Comando de python varia según tu instalación 
+    python3 -m venv venv #Comando de python varia según tu instalación 
     source venv/bin/activate
     ```
     *En Windows, usa `venv\Scripts\activate`*
