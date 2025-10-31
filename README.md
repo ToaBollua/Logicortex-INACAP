@@ -2,6 +2,10 @@
 
 Plataforma de Retos Lógicos y Matemáticos.
 
+## Integrantes del Grupo
+
+Nicolás Anrique, Diego Ibeas, y Camilo Núñez.
+
 ## Descripción
 
 Logicortex es una aplicación web desarrollada con Django que permite a los usuarios registrarse, resolver retos de lógica y matemática, y acumular puntos según la dificultad de los retos completados.
